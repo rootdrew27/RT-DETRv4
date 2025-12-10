@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rt-detrv4"
+version = "0.1.0"
+description = "RT-DETRv4: Painlessly Furthering Real-Time Object Detection with Vision Foundation Models"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+authors = [
+    { name = "Zijun Liao", email = "zjliao25@stu.pku.edu.cn" },
+]
+keywords = [
+    "object-detection",
+    "real-time",
+    "deep-learning",
+    "computer-vision",
+    "transformer",
+    "detr",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "torch",
+    "torchvision",
+    "faster-coco-eval>=1.6.5",
+    "PyYAML",
+    "tensorboard",
+    "scipy",
+    "calflops",
+    "transformers",
+]
+
+[project.optional-dependencies]
+deployment = [
+    "onnx",
+    "onnxsim",
+]
+inference = [
+    "opencv-python",
+    "onnxruntime",
+]
+benchmark = [
+    "onnx",
+    "onnxruntime",
+]
+visualization = [
+    "fiftyone",
+]
+dev = [
+    "onnx",
+    "onnxsim",
+    "opencv-python",
+    "onnxruntime",
+    "fiftyone",
+]
+
+[project.urls]
+Homepage = "https://github.com/RT-DETRs/RT-DETRv4"
+Repository = "https://github.com/RT-DETRs/RT-DETRv4"
+Documentation = "https://github.com/RT-DETRs/RT-DETRv4#readme"
+Issues = "https://github.com/RT-DETRs/RT-DETRv4/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["engine*", "configs*", "tools*"]

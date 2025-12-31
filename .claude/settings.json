@@ -1,0 +1,69 @@
+{
+    "permissions": {
+      "allow": [
+        "Read",
+        "Bash(ls:*)",
+        "Bash(grep:*)",
+        "Bash(cat:*)",
+        "Bash(mkdir:*)",
+        "Bash(uv run ruff format:*)",
+        "Bash(uv run pyright:*)",
+        "Bash(uv run ruff check:*)",
+        "Bash(aws help)",
+        "Bash(aws --version)",
+        "Bash(aws sts get-caller-identity)",
+        "Bash(aws s3 ls:*)",
+        "Bash(aws s3api list-buckets:*)",
+        "Bash(aws s3api list-objects:*)",
+        "Bash(aws s3api list-objects-v2:*)",
+        "Bash(aws s3api head-bucket:*)",
+        "Bash(aws s3api head-object:*)",
+        "Bash(aws s3api get-bucket-location:*)",
+        "Bash(aws s3api get-bucket-policy-status:*)",
+        "Bash(aws logs describe-log-groups:*)",
+        "Bash(aws logs describe-log-streams:*)",
+        "Bash(aws iam get-user:*)",
+        "Bash(aws iam list-users:*)",
+        "Bash(aws iam get-role:*)",
+        "Bash(aws iam list-roles:*)",
+        "Bash(aws iam get-policy:*)",
+        "Bash(aws iam list-policies:*)",
+        "Bash(aws ecr describe-repositories:*)",
+        "Bash(aws ecr list-repositories:*)",
+        "Bash(aws ecr list-images:*)",
+        "Bash(aws ecr describe-images:*)",
+        "Bash(aws ecr get-repository-policy:*)",
+        "Bash(aws ecr get-lifecycle-policy:*)",
+        "Bash(aws ecr get-lifecycle-policy-preview:*)",
+        "Bash(aws ecr get-registry-policy:*)",
+        "Bash(aws ecr describe-registry:*)",
+        "WebFetch(domain:docs.pytorch.org)",
+        "WebFetch(domain:docs.astral.sh)",
+        "WebFetch(domain:github.com)",
+        "WebFetch(domain:sagemaker.readthedocs.io)",
+        "WebFetch(domain:docs.pydantic.dev)",
+        "WebFetch(domain:www.open3d.org)",
+        "mcp__ide__getDiagnostics",
+        "mcp__aws-docs__read_documentation",
+        "mcp__aws-docs__search_documentation"
+      ],
+      "deny": [
+        "Bash(aws s3 rm:*)"
+      ],
+      "ask": [
+        "Bash(rm:*)"
+      ]
+    },
+    "hooks": {
+        "Stop": [
+          {
+            "hooks": [
+              {
+                "type": "command",
+                "command": "cd \"$CLAUDE_PROJECT_DIR\" && uv run ruff format > .dev_logs/ruff-format.log 2>&1; uv run ruff check --fix > .dev_logs/ruff-check.log 2>&1; uv run pyright > .dev_logs/pyright.log 2>&1; exit 0"
+              }
+            ]
+          }
+        ]
+    }  
+}
